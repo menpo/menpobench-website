@@ -1,5 +1,5 @@
 export const TYPE = {
-    SET_ACTIVE_EXPERIMENTS: ""
+    SET_SELECTED_METHODS: ""
 }
 
 // enforce that the strings exactly map to their variable name.

@@ -4,27 +4,21 @@ import * as ac from  '../actionCreators'
 import Label from '../components/Label'
 import Select from 'react-select';
 
-var options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' }
-];
-
-function logChange(val) {
-    console.log("Selected: " + val);
-}
-
 
 export default class App extends Component {
 
     render() {
+        // Injected by connect() call:
+        const { dispatch, selectedMethods, availableMethods } = this.props
         return (
             <div>
-                <Label label="Hello world" />
+                <Label label="M E N P O B E N C H" />
                 <Select
-                    name="form-field-name"
-                    value="one"
-                    options={options}
-                    onChange={logChange}
+                    multi
+                    placeholder="Choose methods..."
+                    value={selectedMethods}
+                    options={availableMethods}
+                    onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v))}
                 />
             </div>
 
@@ -33,7 +27,10 @@ export default class App extends Component {
 }
 
 function select(state) {
-    return state
+    return {
+        selectedMethods: [...state.selectedMethods],
+        availableMethods: [...state.availableMethods]
+    }
 }
 
 export default connect(select)(App)
