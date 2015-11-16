@@ -2,6 +2,17 @@ import React, { Component } from 'react' // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux'
 import * as ac from  '../actionCreators'
 import Label from '../components/Label'
+import Select from 'react-select';
+
+var options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' }
+];
+
+function logChange(val) {
+    console.log("Selected: " + val);
+}
+
 
 export default class App extends Component {
 
@@ -9,7 +20,12 @@ export default class App extends Component {
         return (
             <div>
                 <Label label="Hello world" />
-                <Label label={ this.props.methodsUnderTest[0] }  />
+                <Select
+                    name="form-field-name"
+                    value="one"
+                    options={options}
+                    onChange={logChange}
+                />
             </div>
 
         )
