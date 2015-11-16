@@ -5,7 +5,7 @@ const rootReducer = combineReducers({
     methodsUnderTest: reduceMethodsUnderTest
 })
 
-function reduceMethodsUnderTest(methods=[], action) {
+function reduceMethodsUnderTest(methods=['sdm'], action) {
     return [...methods]
 }
 

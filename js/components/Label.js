@@ -8,7 +8,7 @@ export default class Label extends Component {
     }
 
 }
-
-Label.propTypes = {
-    label: PropTypes.string.isRequired
-}
+//
+//Label.propTypes = {
+//    label: PropTypes.string.isRequired
+//}
