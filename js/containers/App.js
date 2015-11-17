@@ -36,28 +36,28 @@ export default class App extends Component {
                             placeholder="Choose methods..."
                             value={selectedMethods}
                             options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v))}
+                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
                         />
                         <Select
                             multi
                             placeholder="Choose dataset..."
                             value={selectedMethods}
                             options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v))}
+                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
                         />
                         <Select
                             multi
                             placeholder="Choose landmark configuration..."
                             value={selectedMethods}
                             options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v))}
+                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
                         />
                         <Select
                             multi
                             placeholder="Choose error metric..."
                             value={selectedMethods}
                             options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v))}
+                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
                         />
                     </div>
                 </div>
@@ -67,10 +67,19 @@ export default class App extends Component {
     }
 }
 
+function methodMetadataValueLabel(state, methods) {
+    return methods.map(m => {
+        return {
+            value: m,
+            label: state.metadata.method[m].label
+        }
+    })
+}
+
 function select(state) {
     return {
-        selectedMethods: [...state.selectedMethods],
-        availableMethods: [...state.availableMethods]
+        selectedMethods: methodMetadataValueLabel(state, state.selectedMethods),
+        availableMethods:  methodMetadataValueLabel(state, state.availableMethods)
     }
 }
 
