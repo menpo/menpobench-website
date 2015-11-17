@@ -26,7 +26,7 @@ export default class App extends Component {
 
     render() {
         // Injected by connect() call:
-        const { dispatch, selectedMethods, availableMethods } = this.props
+        const { dispatch, selectedMethods, availableMethods, availableDatasets, selectedDataset } = this.props
         return (
             <div>
                 <Label label="M E N P O B E N C H" />
@@ -41,25 +41,10 @@ export default class App extends Component {
                             onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
                         />
                         <Select
-                            multi
                             placeholder="Choose dataset..."
-                            value={selectedMethods}
-                            options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
-                        />
-                        <Select
-                            multi
-                            placeholder="Choose landmark configuration..."
-                            value={selectedMethods}
-                            options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
-                        />
-                        <Select
-                            multi
-                            placeholder="Choose error metric..."
-                            value={selectedMethods}
-                            options={availableMethods}
-                            onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
+                            value={this.props.selectedDataset}
+                            options={availableDatasets}
+                            onChange={v => dispatch(ac.setSelectedDataset((v === null) ? null : v.value))}
                         />
                     </div>
                 </div>
@@ -68,6 +53,20 @@ export default class App extends Component {
         )
     }
 }
+//<Select
+//    multi
+//    placeholder="Choose landmark configuration..."
+//    value={selectedMethods}
+//    options={availableMethods}
+//    onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
+///>
+//<Select
+//multi
+//placeholder="Choose error metric..."
+//value={selectedMethods}
+//options={availableMethods}
+//onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
+///>
 
 function methodMetadataValueLabel(state, methods) {
     return methods.map(m => {
@@ -89,10 +88,24 @@ function methodErrorsForCED(state, methods) {
     }).filter(e => e.errors !== undefined)
 }
 
+function datasetMetadataValueLabel(state, datasets) {
+    return datasets.map(d => {
+        const metadata = state.metadata.dataset[d]
+        return {
+            value: d,
+            label: metadata === undefined ? d : metadata.label
+        }
+    })
+}
+
 function select(state) {
+    console.log(datasetMetadataValueLabel(state, [state.selectedDataset]))
+
     return {
-        selectedMethods: methodMetadataValueLabel(state, state.selectedMethods),
         availableMethods:  methodMetadataValueLabel(state, state.availableMethods),
+        availableDatasets:  datasetMetadataValueLabel(state, state.availableDatasets),
+        selectedMethods: methodMetadataValueLabel(state, state.selectedMethods),
+        selectedDataset:  state.selectedDataset !== null ? datasetMetadataValueLabel(state,  [state.selectedDataset])[0] : undefined,
         errors: methodErrorsForCED(state, state.selectedMethods)
     }
 }

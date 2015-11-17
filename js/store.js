@@ -20,7 +20,17 @@ const predefinedMethodMetadata = {
     }
 }
 
+const predefinedDatasetMetadata = {
+    'lfpw': {
+        'label': 'LFPW'
+    }
+}
+
 store.dispatch(ac.setAvailableMethods(['sdm', 'aam']))
+store.dispatch(ac.setAvailableDatasets(['lfpw']))
+
 store.dispatch(ac.setMethodMetadata(predefinedMethodMetadata))
+store.dispatch(ac.setDatasetMetadata(predefinedDatasetMetadata))
+
 store.dispatch(ac.setErrorsForMethod('sdm', data.sdm.face_size))
 store.dispatch(ac.setErrorsForMethod('aam', data.aam.face_size))

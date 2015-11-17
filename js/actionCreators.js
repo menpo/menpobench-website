@@ -4,14 +4,21 @@ import { TYPE } from './constants'
 export function setSelectedMethods(methods) {
     return {
         type: TYPE.SET_SELECTED_METHODS,
-        methods: methods
+        payload: methods
+    }
+}
+
+export function setSelectedDataset(dataset) {
+    return {
+        type: TYPE.SET_SELECTED_DATASET,
+        payload: dataset
     }
 }
 
 export function setMethodMetadata(methodMetadata) {
     return {
         type: TYPE.SET_METHOD_METADATA,
-        methodMetadata: methodMetadata
+        payload: methodMetadata
     }
 }
 
@@ -19,6 +26,20 @@ export function setAvailableMethods(methods) {
     return {
         type: TYPE.SET_AVAILABLE_METHODS,
         payload: methods
+    }
+}
+
+export function setAvailableDatasets(datasets) {
+    return {
+        type: TYPE.SET_AVAILABLE_DATASETS,
+        payload: datasets
+    }
+}
+
+export function setDatasetMetadata(datasetMetadata) {
+    return {
+        type: TYPE.SET_DATASET_METADATA,
+        payload: datasetMetadata
     }
 }
 
