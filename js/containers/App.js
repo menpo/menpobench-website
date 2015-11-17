@@ -10,13 +10,14 @@ const styles = {
     flexrow: {
         display: "flex",
         flexDirection: "row",
-        alignItems: "flex-start",
+        alignItems: "stretch",
         justifyContent: "space-around"
     },
     flexcol: {
         width: 350,
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        justifyContent: "space-around"
     }
 }
 
