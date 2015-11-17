@@ -26,11 +26,23 @@ const predefinedDatasetMetadata = {
     }
 }
 
+const predefinedErrorMetricMetadata = {
+    'face_area': {
+        'label': 'Face Size'
+    },
+    'euclidean': {
+        'label': 'Euclidean'
+    }
+}
+
 store.dispatch(ac.setAvailableMethods(['sdm', 'aam']))
 store.dispatch(ac.setAvailableDatasets(['lfpw']))
+store.dispatch(ac.setAvailableErrorMetrics(['face_area', 'euclidean']))
+
 
 store.dispatch(ac.setMethodMetadata(predefinedMethodMetadata))
 store.dispatch(ac.setDatasetMetadata(predefinedDatasetMetadata))
+store.dispatch(ac.setErrorMetricMetadata(predefinedErrorMetricMetadata))
 
 store.dispatch(ac.setErrorsForMethod('sdm', data.sdm.face_size))
 store.dispatch(ac.setErrorsForMethod('aam', data.aam.face_size))
