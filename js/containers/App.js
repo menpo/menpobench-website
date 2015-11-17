@@ -4,7 +4,8 @@ import * as ac from  '../actionCreators'
 import Label from '../components/Label'
 import CED from '../components/CED'
 import Select from 'react-select';
-
+import * as data from  '../data'
+import { ced_data } from '../math'
 
 const styles = {
     flexrow: {
@@ -30,7 +31,7 @@ export default class App extends Component {
             <div>
                 <Label label="M E N P O B E N C H" />
                 <div style={styles.flexrow}>
-                    <CED/>
+                    <CED errors={this.props.selectedMethods}/>
                     <div style={styles.flexcol}>
                         <Select
                             multi
@@ -70,9 +71,10 @@ export default class App extends Component {
 
 function methodMetadataValueLabel(state, methods) {
     return methods.map(m => {
+        const metadata = state.metadata.method[m]
         return {
             value: m,
-            label: state.metadata.method[m].label
+            label: metadata === undefined ? m : metadata.label
         }
     })
 }

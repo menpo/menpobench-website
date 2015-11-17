@@ -4,19 +4,14 @@ import { TYPE } from './constants'
 const defaultMethods = ['sdm', 'aam']
 
 
-const defaultMethodMetadata = {
-    'sdm': {
-        'label': 'SDM (Menpo)'
-    },
-    'aam': {
-        label: 'AAM (Menpo)'
+function reduceMethodMetadata(methodMetadata={}, action) {
+    console.log(action)
+    if (action.type === TYPE.SET_METHOD_METADATA) {
+        // TODO should be copy
+        return action.methodMetadata
+    } else {
+        return methodMetadata
     }
-}
-
-function reduceMethodMetadata(methodMetadata=defaultMethodMetadata, action) {
-    // TODO should be copy
-    // TODO handle set method metadata
-    return methodMetadata
 }
 
 function reduceAvailableMethods(methods=defaultMethods, action) {
@@ -26,7 +21,7 @@ function reduceAvailableMethods(methods=defaultMethods, action) {
 
 function reduceMetadata(metadata, action) {
     return {
-        method: reduceMethodMetadata(metadata === undefined ? undefined : metadata.method)
+        method: reduceMethodMetadata(metadata === undefined ? undefined : metadata.method, action)
     }
 }
 
@@ -38,9 +33,18 @@ function reduceSelectedMethods(selectedMethods=[], action) {
     }
 }
 
+function reduceErrors(errors={}, action) {
+    if (action.type == TYPE.SET_SELECTED_METHODS) {
+        return [...action.methods]
+    } else {
+        return [...selectedMethods]
+    }
+}
+
 const rootReducer = combineReducers({
     availableMethods: reduceAvailableMethods,
     selectedMethods: reduceSelectedMethods,
+    //errors: reduceErrors,
     metadata: reduceMetadata
 })
 

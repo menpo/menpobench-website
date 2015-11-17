@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 
-
 const styles = {
     ced: {
         "width": 300,
@@ -12,7 +11,9 @@ const styles = {
 export default class CED extends Component {
 
     render() {
-        return <div style={styles.ced}>CED curve</div>
+        let errors = this.props.errors.join(',')
+        console.log(errors)
+        return <div style={styles.ced}>CED curve for {errors}</div>
     }
 
 }

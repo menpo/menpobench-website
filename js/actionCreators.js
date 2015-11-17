@@ -7,3 +7,10 @@ export function setSelectedMethods(methods) {
         methods: methods
     }
 }
+
+export function setMethodMetadata(methodMetadata) {
+    return {
+        type: TYPE.SET_METHOD_METADATA,
+        methodMetadata: methodMetadata
+    }
+}
