@@ -66,13 +66,7 @@ export default class App extends Component {
 //    options={availableMethods}
 //    onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
 ///>
-//<Select
-//multi
-//placeholder="Choose error metric..."
-//value={selectedMethods}
-//options={availableMethods}
-//onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
-///>
+
 
 function methodMetadataValueLabel(state, methods) {
     return methods.map(m => {

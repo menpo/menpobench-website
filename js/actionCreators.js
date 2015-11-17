@@ -1,6 +1,28 @@
 import store from './store'
 import { TYPE } from './constants'
 
+export function setAvailableMethods(methods) {
+    return {
+        type: TYPE.SET_AVAILABLE_METHODS,
+        payload: methods
+    }
+}
+
+export function setAvailableDatasets(datasets) {
+    return {
+        type: TYPE.SET_AVAILABLE_DATASETS,
+        payload: datasets
+    }
+}
+
+export function setAvailableErrorMetrics(errorMetrics) {
+    return {
+        type: TYPE.SET_AVAILABLE_ERROR_METRICS,
+        payload: errorMetrics
+    }
+}
+
+
 export function setSelectedMethods(methods) {
     return {
         type: TYPE.SET_SELECTED_METHODS,
@@ -30,26 +52,6 @@ export function setMethodMetadata(methodMetadata) {
     }
 }
 
-export function setAvailableMethods(methods) {
-    return {
-        type: TYPE.SET_AVAILABLE_METHODS,
-        payload: methods
-    }
-}
-
-export function setAvailableDatasets(datasets) {
-    return {
-        type: TYPE.SET_AVAILABLE_DATASETS,
-        payload: datasets
-    }
-}
-
-export function setAvailableErrorMetrics(errorMetrics) {
-    return {
-        type: TYPE.SET_AVAILABLE_ERROR_METRICS,
-        payload: errorMetrics
-    }
-}
 
 export function setDatasetMetadata(datasetMetadata) {
     return {
@@ -64,6 +66,7 @@ export function setErrorMetricMetadata(errorMetricMetadata) {
         payload: errorMetricMetadata
     }
 }
+
 
 export function setErrorsForMethod(method, errors) {
     return {

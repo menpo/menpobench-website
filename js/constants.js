@@ -7,11 +7,11 @@ export const TYPE = {
     SET_SELECTED_DATASET: "",
     SET_SELECTED_ERROR_METRIC: "",
 
-    SET_ERRORS_FOR_METHOD: "",
-
     SET_METHOD_METADATA: "",
     SET_DATASET_METADATA: "",
-    SET_ERROR_METRIC_METADATA: ""
+    SET_ERROR_METRIC_METADATA: "",
+
+    SET_ERRORS_FOR_METHOD: ""
 }
 
 // enforce that the strings exactly map to their variable name.
