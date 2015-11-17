@@ -14,3 +14,21 @@ export function setMethodMetadata(methodMetadata) {
         methodMetadata: methodMetadata
     }
 }
+
+export function setAvailableMethods(methods) {
+    return {
+        type: TYPE.SET_AVAILABLE_METHODS,
+        payload: methods
+    }
+}
+
+
+export function setErrorsForMethod(method, errors) {
+    return {
+        type: TYPE.SET_ERRORS_FOR_METHOD,
+        payload: {
+            method: method,
+            errors: errors
+        }
+    }
+}

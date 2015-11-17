@@ -31,7 +31,7 @@ export default class App extends Component {
             <div>
                 <Label label="M E N P O B E N C H" />
                 <div style={styles.flexrow}>
-                    <CED errors={this.props.selectedMethods}/>
+                    <CED errors={this.props.errors}/>
                     <div style={styles.flexcol}>
                         <Select
                             multi
@@ -79,10 +79,21 @@ function methodMetadataValueLabel(state, methods) {
     })
 }
 
+function methodErrorsForCED(state, methods) {
+    return methodMetadataValueLabel(state, methods).map(vl => {
+        return {
+            label: vl.label,
+            errors: state.errors[vl.value],
+            method: vl.value
+        }
+    }).filter(e => e.errors !== undefined)
+}
+
 function select(state) {
     return {
         selectedMethods: methodMetadataValueLabel(state, state.selectedMethods),
-        availableMethods:  methodMetadataValueLabel(state, state.availableMethods)
+        availableMethods:  methodMetadataValueLabel(state, state.availableMethods),
+        errors: methodErrorsForCED(state, state.selectedMethods)
     }
 }
 

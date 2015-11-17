@@ -6,12 +6,16 @@ export function sort(x) {
 }
 
 function ced_range(n) {
-     Array.apply(null, Array(n)).map((_, i) => (i + 1) / n)
+     return Array.apply(null, Array(n)).map((_, i) => (i + 1) / n)
 }
 
-export function ced_data(errors) {
-    return {
-        x: sort(errors),
-        y: ced_range(errors.length)
-    }
+export function errors_to_ced(errors) {
+    const xs = sort(errors)
+    const ys = ced_range(errors.length)
+    return xs.map((x, i) => {
+            return {
+                x: x,
+                y: ys[i]
+            }
+        })
 }

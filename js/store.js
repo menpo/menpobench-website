@@ -2,15 +2,14 @@ import { createStore } from 'redux'
 import rootReducer from './reducers'
 // TODO remove this initialization
 import * as ac from  './actionCreators'
-
+import * as data from './data'
 const store = createStore(rootReducer)
 export default store
 
-// just tmp for debugging
+
+// all below just tmp for debugging
 window.states = []
 store.subscribe(() => window.states.push(store.getState()))
-
-
 
 const predefinedMethodMetadata = {
     'sdm': {
@@ -21,5 +20,7 @@ const predefinedMethodMetadata = {
     }
 }
 
-
+store.dispatch(ac.setAvailableMethods(['sdm', 'aam']))
 store.dispatch(ac.setMethodMetadata(predefinedMethodMetadata))
+store.dispatch(ac.setErrorsForMethod('sdm', data.sdm.face_size))
+store.dispatch(ac.setErrorsForMethod('aam', data.aam.face_size))
