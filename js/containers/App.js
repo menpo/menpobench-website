@@ -52,6 +52,12 @@ export default class App extends Component {
                             options={this.props.availableErrorMetrics}
                             onChange={v => dispatch(ac.setSelectedErrorMetric((v === null) ? null : v.value))}
                         />
+                        <Select
+                            placeholder="Choose landmark scheme..."
+                            value={this.props.selectedLmScheme}
+                            options={this.props.availableLmSchemes}
+                            onChange={v => dispatch(ac.setSelectedLmScheme((v === null) ? null : v.value))}
+                        />
                     </div>
                 </div>
             </div>
@@ -108,6 +114,16 @@ function errorMetricMetadataValueLabel(state, errorMetrics) {
     })
 }
 
+function lmSchemeMetadataValueLabel(state, lmSchemes) {
+    return lmSchemes.map(x => {
+        const metadata = state.metadata.lmScheme[x]
+        return {
+            value: x,
+            label: metadata === undefined ? x : metadata.label
+        }
+    })
+}
+
 function select(state) {
     console.log(datasetMetadataValueLabel(state, [state.selectedDataset]))
 
@@ -115,9 +131,13 @@ function select(state) {
         availableMethods:  methodMetadataValueLabel(state, state.availableMethods),
         availableDatasets:  datasetMetadataValueLabel(state, state.availableDatasets),
         availableErrorMetrics:  errorMetricMetadataValueLabel(state, state.availableErrorMetrics),
+        availableLmSchemes:  lmSchemeMetadataValueLabel(state, state.availableLmSchemes),
+
         selectedMethods: methodMetadataValueLabel(state, state.selectedMethods),
         selectedDataset:  state.selectedDataset !== null ? datasetMetadataValueLabel(state,  [state.selectedDataset])[0] : undefined,
         selectedErrorMetric:  state.selectedErrorMetric !== null ? errorMetricMetadataValueLabel(state,  [state.selectedErrorMetric])[0] : undefined,
+        selectedLmScheme:  state.selectedLmScheme !== null ? lmSchemeMetadataValueLabel(state,  [state.selectedLmScheme])[0] : undefined,
+
         errors: methodErrorsForCED(state, state.selectedMethods)
     }
 }

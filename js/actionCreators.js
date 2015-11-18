@@ -22,6 +22,13 @@ export function setAvailableErrorMetrics(errorMetrics) {
     }
 }
 
+export function setAvailableLmSchemes(lmSchemes) {
+    return {
+        type: TYPE.SET_AVAILABLE_LM_SCHEMES,
+        payload: lmSchemes
+    }
+}
+
 
 export function setSelectedMethods(methods) {
     return {
@@ -44,26 +51,40 @@ export function setSelectedErrorMetric(errorMetric) {
     }
 }
 
+export function setSelectedLmScheme(lmScheme) {
+    return {
+        type: TYPE.SET_SELECTED_LM_SCHEME,
+        payload: lmScheme
+    }
+}
 
-export function setMethodMetadata(methodMetadata) {
+
+export function setMethodMetadata(metadata) {
     return {
         type: TYPE.SET_METHOD_METADATA,
-        payload: methodMetadata
+        payload: metadata
     }
 }
 
 
-export function setDatasetMetadata(datasetMetadata) {
+export function setDatasetMetadata(metadata) {
     return {
         type: TYPE.SET_DATASET_METADATA,
-        payload: datasetMetadata
+        payload: metadata
     }
 }
 
-export function setErrorMetricMetadata(errorMetricMetadata) {
+export function setErrorMetricMetadata(metadata) {
     return {
         type: TYPE.SET_ERROR_METRIC_METADATA,
-        payload: errorMetricMetadata
+        payload: metadata
+    }
+}
+
+export function setLmSchemeMetadata(metadata) {
+    return {
+        type: TYPE.SET_LM_SCHEME_METADATA,
+        payload: metadata
     }
 }
 

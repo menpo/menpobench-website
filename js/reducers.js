@@ -26,6 +26,14 @@ function reduceAvailableErrorMetrics(state=[], action) {
     }
 }
 
+function reduceAvailableLmSchemes(state=[], action) {
+    if (action.type === TYPE.SET_AVAILABLE_LM_SCHEMES) {
+        return [...action.payload]
+    } else {
+        return [...state]
+    }
+}
+
 
 function reduceSelectedMethods(selectedMethods=[], action) {
     if (action.type == TYPE.SET_SELECTED_METHODS) {
@@ -45,6 +53,14 @@ function reduceSelectedDataset(state=null, action) {
 
 function reduceSelectedErrorMetric(state=null, action) {
     if (action.type == TYPE.SET_SELECTED_ERROR_METRIC) {
+        return action.payload
+    } else {
+        return state
+    }
+}
+
+function reduceSelectedLmScheme(state=null, action) {
+    if (action.type == TYPE.SET_SELECTED_LM_SCHEME) {
         return action.payload
     } else {
         return state
@@ -79,11 +95,21 @@ function reduceErrorMetricMetadata(state={}, action) {
     }
 }
 
+function reduceLmSchemeMetadata(state={}, action) {
+    if (action.type === TYPE.SET_LM_SCHEME_METADATA) {
+        // TODO should be copy
+        return action.payload
+    } else {
+        return state
+    }
+}
+
 function reduceMetadata(metadata, action) {
     return {
         method: reduceMethodMetadata(metadata === undefined ? undefined : metadata.method, action),
         dataset: reduceDatasetMetadata(metadata === undefined ? undefined : metadata.dataset, action),
-        errorMetric: reduceErrorMetricMetadata(metadata === undefined ? undefined : metadata.errorMetric, action)
+        errorMetric: reduceErrorMetricMetadata(metadata === undefined ? undefined : metadata.errorMetric, action),
+        lmScheme: reduceLmSchemeMetadata(metadata === undefined ? undefined : metadata.lmScheme, action)
     }
 }
 
@@ -101,9 +127,13 @@ const rootReducer = combineReducers({
     availableMethods: reduceAvailableMethods,
     availableDatasets: reduceAvailableDatasets,
     availableErrorMetrics: reduceAvailableErrorMetrics,
+    availableLmSchemes: reduceAvailableLmSchemes,
+
     selectedMethods: reduceSelectedMethods,
     selectedDataset: reduceSelectedDataset,
     selectedErrorMetric: reduceSelectedErrorMetric,
+    selectedLmScheme: reduceSelectedLmScheme,
+
     metadata: reduceMetadata,
     errors: reduceErrors
 })
