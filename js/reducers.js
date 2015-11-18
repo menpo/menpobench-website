@@ -2,11 +2,11 @@ import { combineReducers } from 'redux'
 import { TYPE } from './constants'
 
 
-function reduceAvailableMethods(methods=[], action) {
+function reduceAvailableMethods(state=[], action) {
     if (action.type === TYPE.SET_AVAILABLE_METHODS) {
         return [...action.payload]
     } else {
-        return [...methods]
+        return [...state]
     }
 }
 
@@ -35,11 +35,11 @@ function reduceAvailableLmSchemes(state=[], action) {
 }
 
 
-function reduceSelectedMethods(selectedMethods=[], action) {
+function reduceSelectedMethods(state=[], action) {
     if (action.type == TYPE.SET_SELECTED_METHODS) {
         return [...action.payload]
     } else {
-        return [...selectedMethods]
+        return [...state]
     }
 }
 
@@ -68,12 +68,12 @@ function reduceSelectedLmScheme(state=null, action) {
 }
 
 
-function reduceMethodMetadata(methodMetadata={}, action) {
+function reduceMethodMetadata(state={}, action) {
     if (action.type === TYPE.SET_METHOD_METADATA) {
         // TODO should be copy
         return action.payload
     } else {
-        return methodMetadata
+        return state
     }
 }
 
@@ -115,6 +115,7 @@ function reduceMetadata(metadata, action) {
 
 
 function reduceErrors(errors={}, action) {
+    // TODO is this a shallow copy? Should be deep?
     errors =  {...errors}
     if (action.type == TYPE.SET_ERRORS_FOR_METHOD) {
         errors[action.payload.method] = action.payload.errors

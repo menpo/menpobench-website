@@ -65,13 +65,6 @@ export default class App extends Component {
         )
     }
 }
-//<Select
-//    multi
-//    placeholder="Choose landmark configuration..."
-//    value={selectedMethods}
-//    options={availableMethods}
-//    onChange={v => dispatch(ac.setSelectedMethods((v === null) ? [] : v.map(m => m.value)))}
-///>
 
 
 function methodMetadataValueLabel(state, methods) {
